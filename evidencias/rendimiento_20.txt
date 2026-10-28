@@ -1,0 +1,8 @@
+SIMULADOR DE EMERGENCIAS | escenario=stress | llamadas=20 | amb=5 | fallo=0% | velocidad=5.0x
+Modelo académico con coordenadas y tiempos simulados. No es software de despacho clínico.
+
+=================== RESULTADO FINAL ===================
+estado=FINALIZADO | llamadas=20 | completadas=20 | fallidas=0 | reintentos=0
+asignaciones=20 | espera_max_cola=15 | concurrencia_max=5 | promedio_asignacion=0.494s
+promedio_resolucion=0.875s | tiempo_real=2.026s | utilizacion_ambulancias_aprox=75.2% | mensajes_hospital=60
+=======================================================

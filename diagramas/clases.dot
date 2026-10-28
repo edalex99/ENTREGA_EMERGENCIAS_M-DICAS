@@ -1,0 +1,18 @@
+digraph ClassDiagram {
+  graph [rankdir=TB, bgcolor="white", pad="0.3", nodesep="0.55", ranksep="0.8", fontname="DejaVu Sans", label="Diagrama de clases (atributos y métodos principales)", labelloc=t, fontsize=18];
+  node [shape=record, style="filled", fillcolor="#EFF5FA", color="#7B93AC", fontname="DejaVu Sans", fontsize=11, margin="0.14,0.10"];
+  edge [color="#59708A", fontsize=10, arrowsize=0.7, fontname="DejaVu Sans"];
+  motor [label="{SimulationEngine|Config; inbound; executors\lcoordinator; communications\l|start(); submit(); awaitCompletion(); close()\l}", fillcolor="#DBEAFE"];
+  coor [label="{DispatchCoordinator|waiting; cases; lock; counters\lResourcePool; maxAttempts\l|register(); claimNext(); complete()\ltripFailed(); repair(); snapshot()\l}", fillcolor="#D1FAE5"];
+  emergency [label="{Emergency|id; severity; location; status\lcreatedNanos; attempts\l|status(); nextAttempt(); finishedAt()\l}"];
+  pool [label="{ResourcePool|ambulances; medics; kits\l|findBundle(); reserve(); release()\loutOfService(); repair(); counts()\l}", fillcolor="#FFF3C6"];
+  policy [label="{PriorityPolicy|pesos de severidad; espera; distancia\l|score() : double\l}"];
+  communication [label="{Communications|toHospital : BlockingQueue\lhospitalThread; delivered\l|start(); hospital(); close()\l}"];
+  monitor [label="{ConsoleMonitor|coordinator; startedNanos\l|run(); snapshot()\l}"];
+  motor -> coor [label="1 usa"];
+  motor -> communication [label="1 usa"];
+  motor -> monitor [label="1 programa"];
+  coor -> pool [label="1 administra"];
+  coor -> emergency [label="0..* casos"];
+  coor -> policy [label="consulta", style=dashed];
+}

@@ -1,0 +1,162 @@
+SIMULADOR DE EMERGENCIAS | escenario=demo | llamadas=14 | amb=3 | fallo=0% | velocidad=2.0x
+Modelo académico con coordenadas y tiempos simulados. No es software de despacho clínico.
+
+================ MONITOR 01:40:23 | t=0.0s ================
+CASOS  ingresados=0  pendientes=0  en_curso=0  completados=0  fallidos=0
+FLOTA  disponibles=3  en_camino=0  ocupadas=0  fuera_servicio=0
+OTROS  medicos_libres=3  equipos_libres=3  reintentos=0  max_simultaneas=0
+TIEMPOS media_asignacion=0.00s  media_resolucion=0.00s
+COLA PRIORIZADA (máx. cinco): caso | gravedad | puntaje | espera(s) | km*
+  (sin emergencias pendientes)
+* km estimados contra la ambulancia disponible; 0 si no hay paquete libre.
+===========================================================
+[01:40:23.434] [DESPACHO   ] EM-001 -> AMB-02 / MED-01 / EQU-01 (2.78 km)
+[01:40:23.435] [OPERADOR   ] llamada EM-001 gravedad=LEVE
+[01:40:23.436] [HOSPITAL   ] mensaje recibido: EM-001 | ambulancia en camino | AMB-02
+[01:40:23.490] [DESPACHO   ] EM-002 -> AMB-01 / MED-02 / EQU-02 (2.63 km)
+[01:40:23.490] [OPERADOR   ] llamada EM-002 gravedad=GRAVE
+[01:40:23.491] [HOSPITAL   ] mensaje recibido: EM-002 | ambulancia en camino | AMB-01
+[01:40:23.565] [DESPACHO   ] EM-003 -> AMB-03 / MED-03 / EQU-03 (3.50 km)
+[01:40:23.566] [OPERADOR   ] llamada EM-003 gravedad=GRAVE
+[01:40:23.566] [HOSPITAL   ] mensaje recibido: EM-003 | ambulancia en camino | AMB-03
+[01:40:23.641] [OPERADOR   ] llamada EM-004 gravedad=MODERADA
+[01:40:23.716] [OPERADOR   ] llamada EM-005 gravedad=CRITICA
+[01:40:23.791] [OPERADOR   ] llamada EM-006 gravedad=MODERADA
+[01:40:23.866] [OPERADOR   ] llamada EM-007 gravedad=CRITICA
+[01:40:23.878] [HOSPITAL   ] mensaje recibido: EM-001 | equipo llegó al lugar | AMB-02
+[01:40:23.922] [HOSPITAL   ] mensaje recibido: EM-002 | equipo llegó al lugar | AMB-01
+[01:40:23.941] [OPERADOR   ] llamada EM-008 gravedad=GRAVE
+[01:40:24.017] [OPERADOR   ] llamada EM-009 gravedad=GRAVE
+[01:40:24.061] [HOSPITAL   ] mensaje recibido: EM-003 | equipo llegó al lugar | AMB-03
+[01:40:24.092] [OPERADOR   ] llamada EM-010 gravedad=CRITICA
+[01:40:24.167] [OPERADOR   ] llamada EM-011 gravedad=GRAVE
+[01:40:24.242] [OPERADOR   ] llamada EM-012 gravedad=MODERADA
+[01:40:24.254] [HOSPITAL   ] mensaje recibido: EM-001 | atención finalizada | AMB-02
+[01:40:24.254] [DESPACHO   ] EM-007 -> AMB-02 / MED-01 / EQU-01 (2.90 km)
+[01:40:24.255] [ATENDIDA   ] EM-001 completada; recursos liberados
+[01:40:24.255] [HOSPITAL   ] mensaje recibido: EM-007 | ambulancia en camino | AMB-02
+[01:40:24.297] [HOSPITAL   ] mensaje recibido: EM-002 | atención finalizada | AMB-01
+[01:40:24.297] [DESPACHO   ] EM-010 -> AMB-01 / MED-02 / EQU-02 (3.83 km)
+[01:40:24.298] [ATENDIDA   ] EM-002 completada; recursos liberados
+[01:40:24.298] [HOSPITAL   ] mensaje recibido: EM-010 | ambulancia en camino | AMB-01
+[01:40:24.317] [OPERADOR   ] llamada EM-013 gravedad=LEVE
+[01:40:24.393] [OPERADOR   ] llamada EM-014 gravedad=MODERADA
+
+================ MONITOR 01:40:24 | t=1.0s ================
+CASOS  ingresados=14  pendientes=9  en_curso=3  completados=2  fallidos=0
+FLOTA  disponibles=0  en_camino=2  ocupadas=1  fuera_servicio=0
+OTROS  medicos_libres=0  equipos_libres=0  reintentos=0  max_simultaneas=3
+TIEMPOS media_asignacion=0.00s  media_resolucion=0.82s
+COLA PRIORIZADA (máx. cinco): caso | gravedad | puntaje | espera(s) | km*
+  EM-005   | CRITICA  |  1010.4 |     0.70 |  0.00
+  EM-008   | GRAVE    |   707.1 |     0.47 |  0.00
+  EM-009   | GRAVE    |   705.9 |     0.39 |  0.00
+  EM-011   | GRAVE    |   703.7 |     0.24 |  0.00
+  EM-004   | MODERADA |   411.6 |     0.77 |  0.00
+* km estimados contra la ambulancia disponible; 0 si no hay paquete libre.
+===========================================================
+[01:40:24.436] [ATENDIDA   ] EM-003 completada; recursos liberados
+[01:40:24.436] [HOSPITAL   ] mensaje recibido: EM-003 | atención finalizada | AMB-03
+[01:40:24.436] [DESPACHO   ] EM-005 -> AMB-03 / MED-03 / EQU-03 (11.03 km)
+[01:40:24.436] [HOSPITAL   ] mensaje recibido: EM-005 | ambulancia en camino | AMB-03
+[01:40:24.705] [HOSPITAL   ] mensaje recibido: EM-007 | equipo llegó al lugar | AMB-02
+[01:40:24.815] [HOSPITAL   ] mensaje recibido: EM-010 | equipo llegó al lugar | AMB-01
+[01:40:25.205] [ATENDIDA   ] EM-007 completada; recursos liberados
+[01:40:25.206] [DESPACHO   ] EM-008 -> AMB-02 / MED-01 / EQU-01 (4.00 km)
+[01:40:25.206] [HOSPITAL   ] mensaje recibido: EM-007 | atención finalizada | AMB-02
+[01:40:25.206] [HOSPITAL   ] mensaje recibido: EM-008 | ambulancia en camino | AMB-02
+[01:40:25.315] [ATENDIDA   ] EM-010 completada; recursos liberados
+[01:40:25.315] [DESPACHO   ] EM-009 -> AMB-01 / MED-02 / EQU-02 (5.21 km)
+[01:40:25.316] [HOSPITAL   ] mensaje recibido: EM-010 | atención finalizada | AMB-01
+[01:40:25.317] [HOSPITAL   ] mensaje recibido: EM-009 | ambulancia en camino | AMB-01
+
+================ MONITOR 01:40:25 | t=2.0s ================
+CASOS  ingresados=14  pendientes=6  en_curso=3  completados=5  fallidos=0
+FLOTA  disponibles=0  en_camino=3  ocupadas=0  fuera_servicio=0
+OTROS  medicos_libres=0  equipos_libres=0  reintentos=0  max_simultaneas=3
+TIEMPOS media_asignacion=0.12s  media_resolucion=1.02s
+COLA PRIORIZADA (máx. cinco): caso | gravedad | puntaje | espera(s) | km*
+  EM-011   | GRAVE    |   718.7 |     1.24 |  0.00
+  EM-004   | MODERADA |   426.6 |     1.77 |  0.00
+  EM-006   | MODERADA |   424.3 |     1.62 |  0.00
+  EM-012   | MODERADA |   417.5 |     1.17 |  0.00
+  EM-014   | MODERADA |   415.3 |     1.02 |  0.00
+* km estimados contra la ambulancia disponible; 0 si no hay paquete libre.
+===========================================================
+[01:40:25.476] [HOSPITAL   ] mensaje recibido: EM-005 | equipo llegó al lugar | AMB-03
+[01:40:25.736] [HOSPITAL   ] mensaje recibido: EM-008 | equipo llegó al lugar | AMB-02
+[01:40:25.934] [HOSPITAL   ] mensaje recibido: EM-009 | equipo llegó al lugar | AMB-01
+[01:40:25.977] [ATENDIDA   ] EM-005 completada; recursos liberados
+[01:40:25.977] [HOSPITAL   ] mensaje recibido: EM-005 | atención finalizada | AMB-03
+[01:40:25.977] [DESPACHO   ] EM-011 -> AMB-03 / MED-03 / EQU-03 (8.41 km)
+[01:40:25.977] [HOSPITAL   ] mensaje recibido: EM-011 | ambulancia en camino | AMB-03
+[01:40:26.111] [ATENDIDA   ] EM-008 completada; recursos liberados
+[01:40:26.112] [DESPACHO   ] EM-006 -> AMB-02 / MED-01 / EQU-01 (2.71 km)
+[01:40:26.112] [HOSPITAL   ] mensaje recibido: EM-008 | atención finalizada | AMB-02
+[01:40:26.112] [HOSPITAL   ] mensaje recibido: EM-006 | ambulancia en camino | AMB-02
+[01:40:26.310] [ATENDIDA   ] EM-009 completada; recursos liberados
+[01:40:26.310] [DESPACHO   ] EM-004 -> AMB-01 / MED-02 / EQU-02 (5.00 km)
+[01:40:26.310] [HOSPITAL   ] mensaje recibido: EM-009 | atención finalizada | AMB-01
+[01:40:26.310] [HOSPITAL   ] mensaje recibido: EM-004 | ambulancia en camino | AMB-01
+
+================ MONITOR 01:40:26 | t=3.0s ================
+CASOS  ingresados=14  pendientes=3  en_curso=3  completados=8  fallidos=0
+FLOTA  disponibles=0  en_camino=3  ocupadas=0  fuera_servicio=0
+OTROS  medicos_libres=0  equipos_libres=0  reintentos=0  max_simultaneas=3
+TIEMPOS media_asignacion=0.49s  media_resolucion=1.48s
+COLA PRIORIZADA (máx. cinco): caso | gravedad | puntaje | espera(s) | km*
+  EM-012   | MODERADA |   432.5 |     2.17 |  0.00
+  EM-014   | MODERADA |   430.3 |     2.02 |  0.00
+  EM-013   | LEVE     |   131.4 |     2.09 |  0.00
+* km estimados contra la ambulancia disponible; 0 si no hay paquete libre.
+===========================================================
+[01:40:26.549] [HOSPITAL   ] mensaje recibido: EM-006 | equipo llegó al lugar | AMB-02
+[01:40:26.827] [HOSPITAL   ] mensaje recibido: EM-011 | equipo llegó al lugar | AMB-03
+[01:40:26.912] [HOSPITAL   ] mensaje recibido: EM-004 | equipo llegó al lugar | AMB-01
+[01:40:26.924] [ATENDIDA   ] EM-006 completada; recursos liberados
+[01:40:26.924] [DESPACHO   ] EM-014 -> AMB-02 / MED-01 / EQU-01 (4.21 km)
+[01:40:26.925] [HOSPITAL   ] mensaje recibido: EM-006 | atención finalizada | AMB-02
+[01:40:26.925] [HOSPITAL   ] mensaje recibido: EM-014 | ambulancia en camino | AMB-02
+[01:40:27.204] [ATENDIDA   ] EM-011 completada; recursos liberados
+[01:40:27.205] [DESPACHO   ] EM-012 -> AMB-03 / MED-03 / EQU-03 (2.38 km)
+[01:40:27.205] [HOSPITAL   ] mensaje recibido: EM-011 | atención finalizada | AMB-03
+[01:40:27.205] [HOSPITAL   ] mensaje recibido: EM-012 | ambulancia en camino | AMB-03
+[01:40:27.287] [ATENDIDA   ] EM-004 completada; recursos liberados
+[01:40:27.288] [DESPACHO   ] EM-013 -> AMB-01 / MED-02 / EQU-02 (7.07 km)
+[01:40:27.288] [HOSPITAL   ] mensaje recibido: EM-004 | atención finalizada | AMB-01
+[01:40:27.288] [HOSPITAL   ] mensaje recibido: EM-013 | ambulancia en camino | AMB-01
+
+================ MONITOR 01:40:27 | t=4.0s ================
+CASOS  ingresados=14  pendientes=0  en_curso=3  completados=11  fallidos=0
+FLOTA  disponibles=0  en_camino=3  ocupadas=0  fuera_servicio=0
+OTROS  medicos_libres=0  equipos_libres=0  reintentos=0  max_simultaneas=3
+TIEMPOS media_asignacion=0.97s  media_resolucion=1.97s
+COLA PRIORIZADA (máx. cinco): caso | gravedad | puntaje | espera(s) | km*
+  (sin emergencias pendientes)
+* km estimados contra la ambulancia disponible; 0 si no hay paquete libre.
+===========================================================
+[01:40:27.470] [HOSPITAL   ] mensaje recibido: EM-014 | equipo llegó al lugar | AMB-02
+[01:40:27.618] [HOSPITAL   ] mensaje recibido: EM-012 | equipo llegó al lugar | AMB-03
+[01:40:27.845] [ATENDIDA   ] EM-014 completada; recursos liberados
+[01:40:27.845] [HOSPITAL   ] mensaje recibido: EM-014 | atención finalizada | AMB-02
+[01:40:27.993] [ATENDIDA   ] EM-012 completada; recursos liberados
+[01:40:27.994] [HOSPITAL   ] mensaje recibido: EM-012 | atención finalizada | AMB-03
+[01:40:28.041] [HOSPITAL   ] mensaje recibido: EM-013 | equipo llegó al lugar | AMB-01
+
+================ MONITOR 01:40:28 | t=5.0s ================
+CASOS  ingresados=14  pendientes=0  en_curso=1  completados=13  fallidos=0
+FLOTA  disponibles=2  en_camino=0  ocupadas=1  fuera_servicio=0
+OTROS  medicos_libres=2  equipos_libres=2  reintentos=0  max_simultaneas=3
+TIEMPOS media_asignacion=1.24s  media_resolucion=2.22s
+COLA PRIORIZADA (máx. cinco): caso | gravedad | puntaje | espera(s) | km*
+  (sin emergencias pendientes)
+* km estimados contra la ambulancia disponible; 0 si no hay paquete libre.
+===========================================================
+[01:40:28.416] [ATENDIDA   ] EM-013 completada; recursos liberados
+[01:40:28.417] [HOSPITAL   ] mensaje recibido: EM-013 | atención finalizada | AMB-01
+
+=================== RESULTADO FINAL ===================
+estado=FINALIZADO | llamadas=14 | completadas=14 | fallidas=0 | reintentos=0
+asignaciones=14 | espera_max_cola=9 | concurrencia_max=3 | promedio_asignacion=1.368s
+promedio_resolucion=2.352s | tiempo_real=5.238s | utilizacion_ambulancias_aprox=87.7% | mensajes_hospital=42
+=======================================================

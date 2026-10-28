@@ -1,0 +1,9 @@
+[OK] Distancia geográfica Haversine (0.00s)
+[OK] Prioridad por gravedad (0.01s)
+[OK] Desempate por proximidad (0.00s)
+[OK] Envejecimiento evita inanición (0.00s)
+[OK] Reserva atómica bajo 12 despachadores (0.12s)
+[OK] Flujo completo con 50 llamadas concurrentes (3.20s)
+[OK] Reencolado, límite de intentos y reparación (1.18s)
+[OK] Rechazo de IDs duplicados y parámetros inválidos (0.00s)
+RESULTADO PRUEBAS: 8/8 CORRECTAS
