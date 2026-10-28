@@ -35,6 +35,7 @@ public final class Main {
         boolean success;
         DispatchCoordinator.Snapshot result;
         int hospitalMessages;
+        int rejectedCalls;
         double elapsedSeconds;
         try (SimulationEngine engine = new SimulationEngine(config)) {
             engine.start();
@@ -60,13 +61,14 @@ public final class Main {
             Thread.sleep(200);
             result = engine.snapshot();
             hospitalMessages = engine.hospitalMessages();
+            rejectedCalls = engine.rejected();
             elapsedSeconds = engine.elapsedNanos() / 1e9;
         }
         System.out.println();
         System.out.println("=================== RESULTADO FINAL ===================");
-        System.out.printf("estado=%s | llamadas=%d | completadas=%d | fallidas=%d | reintentos=%d%n",
+        System.out.printf("estado=%s | llamadas=%d | completadas=%d | fallidas=%d | reintentos=%d | rechazadas=%d%n",
                 success ? "FINALIZADO" : "TIEMPO_AGOTADO", count, result.completed(),
-                result.failed(), result.retryCount());
+                result.failed(), result.retryCount(), rejectedCalls);
         System.out.printf(Locale.US,
                 "asignaciones=%d | espera_max_cola=%d | concurrencia_max=%d | promedio_asignacion=%.3fs%n",
                 result.assignments(), result.maxPending(), result.maxConcurrent(), result.avgResponseSeconds());

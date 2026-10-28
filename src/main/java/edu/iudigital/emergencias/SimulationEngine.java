@@ -38,6 +38,8 @@ public final class SimulationEngine implements AutoCloseable {
     private final ExecutorService ambulances;
     private final ScheduledExecutorService schedules = Executors.newScheduledThreadPool(2);
     private final AtomicInteger submitted = new AtomicInteger();
+    // Registros rechazados (p. ej., identificadores duplicados) no quedan sin contabilizar.
+    private final AtomicInteger rejected = new AtomicInteger();
     private final AtomicInteger operatorsWorking = new AtomicInteger();
     private final AtomicInteger tripId = new AtomicInteger();
     private volatile boolean running;
@@ -69,6 +71,11 @@ public final class SimulationEngine implements AutoCloseable {
                     try {
                         coordinator.register(e);
                         communications.event("OPERADOR", "llamada %s gravedad=%s".formatted(e.id(), e.severity()));
+                    } catch (IllegalArgumentException invalidCall) {
+                        // Rechazar el incidente inválido sin terminar el hilo operador.
+                        rejected.incrementAndGet();
+                        communications.event("RECHAZADA", "llamada %s: %s".formatted(
+                                e.id(), invalidCall.getMessage()));
                     } finally { operatorsWorking.decrementAndGet(); }
                 }
             } catch (InterruptedException interrupted) { Thread.currentThread().interrupt(); }
@@ -139,8 +146,12 @@ public final class SimulationEngine implements AutoCloseable {
         long limit = System.nanoTime() + timeout.toNanos();
         while (System.nanoTime() < limit) {
             DispatchCoordinator.Snapshot s = coordinator.snapshot();
-            if (submitted.get() == s.registered() && inbound.isEmpty()
-                    && operatorsWorking.get() == 0 && s.completed() + s.failed() == submitted.get())
+            int total = submitted.get();
+            int invalid = rejected.get();
+            // Los rechazos terminales no deben provocar un falso timeout.
+            if (total == s.registered() + invalid && inbound.isEmpty()
+                    && operatorsWorking.get() == 0
+                    && s.completed() + s.failed() + invalid == total)
                 return true;
             Thread.sleep(35);
         }
@@ -148,6 +159,7 @@ public final class SimulationEngine implements AutoCloseable {
     }
     public DispatchCoordinator.Snapshot snapshot() { return coordinator.snapshot(); }
     public int submitted() { return submitted.get(); }
+    public int rejected() { return rejected.get(); }
     public int hospitalMessages() { return communications.deliveredMessages(); }
     public long elapsedNanos() { return System.nanoTime() - startedNanos; }
     @Override public void close() {

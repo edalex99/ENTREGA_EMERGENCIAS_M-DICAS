@@ -121,7 +121,7 @@ public final class ProjectTests {
                     "Recursos no reparados/liberados");
         }
     }
-    private static void validations() {
+    private static void validations() throws Exception {
         var c = new DispatchCoordinator(new ResourcePool(1, 1, 1), 2);
         var e = incident("DUP", Emergency.Severity.LEVE, new GeoPoint(6.25, -75.56));
         c.register(e);
@@ -131,5 +131,22 @@ public final class ProjectTests {
         boolean invalid = false;
         try { new GeoPoint(98, -75); } catch (IllegalArgumentException x) { invalid = true; }
         check(invalid, "Se aceptó coordenada inválida");
+
+        // Prueba integral: un ID repetido no mata al operador ni bloquea el cierre.
+        var cfg = new SimulationEngine.Config(1, 2, 1, 1, 1, 0, 10,
+                200, false, false, 2);
+        try (var engine = new SimulationEngine(cfg)) {
+            engine.start();
+            engine.submit(incident("AS-1", Emergency.Severity.GRAVE, new GeoPoint(6.25, -75.56)));
+            engine.submit(incident("AS-1", Emergency.Severity.GRAVE, new GeoPoint(6.25, -75.56)));
+            engine.submit(incident("AS-2", Emergency.Severity.LEVE, new GeoPoint(6.25, -75.56)));
+            check(engine.awaitCompletion(Duration.ofSeconds(8)),
+                    "Un duplicado bloqueó el cierre del motor de simulación");
+            var snap = engine.snapshot();
+            check(engine.submitted() == 3 && engine.rejected() == 1,
+                    "El duplicado no se registró como rechazo");
+            check(snap.registered() == 2 && snap.completed() == 2 && snap.pending() == 0,
+                    "El operador no continuó atendiendo los casos válidos");
+        }
     }
 }
